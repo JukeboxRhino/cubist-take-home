@@ -1,0 +1,31 @@
+.widgets {
+  /* In a real scenario where we weren't hiding the other widgets in a mobile view, */
+  /* we would switch to flex-direction: column here. */
+  display: flex;
+  flex-grow: 1;
+  gap: 12px;
+}
+
+.widget {
+  background-color: var(--secondary-sand-50);
+  border-radius: 20px;
+  box-shadow: 0px 0px 8px 0px rgba(232, 221, 209, 0.40);
+  flex: 1 0 0;
+  padding: 12px;
+}
+
+.fake-widget {
+  /* Do not display on mobile devices */
+  display: none;
+}
+
+/* Desktop-specific styles */
+@media (min-width: 1280px) {
+  .widget {
+    padding: 24px;
+  }
+
+  .fake-widget {
+    display: unset;
+  }
+}

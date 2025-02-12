@@ -1,0 +1,25 @@
+.transactions-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-widget .transactions-header {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.transactions-widget .transactions-body {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--flex-gap-small);
+}
+
+/* Desktop-specific styles */
+@media (min-width: 1280px) {
+  .transactions-widget .transactions-header {
+    gap: 16px;
+  }
+}

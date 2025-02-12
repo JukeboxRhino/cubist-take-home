@@ -1,0 +1,56 @@
+.skeleton {
+  animation: skeleton-loader 1s ease infinite alternate;
+  background-color: var(--secondary-sand-50);
+}
+
+.skeleton.secondary {
+  animation: skeleton-loader-secondary 1s ease infinite alternate;
+  background-color: var(--secondary-sand-200);
+}
+
+.skeleton.text {
+  border-radius: 50px;
+  height: 44px;
+}
+
+.skeleton.text.small {
+  height: 16px;
+  width: 160px;
+}
+
+.skeleton.icon {
+  border-radius: 100%;
+  height: 44px;
+  width: 44px;
+}
+
+.skeleton.box {
+  border-radius: 12px;
+  flex: 1 1 0;
+}
+
+@keyframes skeleton-loader {
+  0% {
+    background-color: var(--secondary-sand-200);
+  }
+
+  100% {
+    background-color: var(--secondary-sand-50);
+  }
+}
+
+@keyframes skeleton-loader-secondary {
+  0% {
+    background-color: var(--secondary-sand-50);
+  }
+
+  100% {
+    background-color: var(--secondary-sand-200);
+  }
+}
+
+@media (min-width: 1280px) {
+  .skeleton.text.small {
+    height: 20px;
+  }
+}
