@@ -8,7 +8,7 @@ function Address({ address }: { address: string }) {
   const first = address.slice(0, -4);
   const last = address.slice(-4);
   return (
-    <span className='address'>
+    <span className='address' title={address}>
       <span className='first'>{first}</span>
       <span className='last'>{last}</span>
     </span>

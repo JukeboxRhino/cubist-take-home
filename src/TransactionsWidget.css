@@ -42,3 +42,10 @@
     gap: 16px;
   }
 }
+
+@media (min-width: 1920px) {
+  .transactions-widget .transactions-header {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

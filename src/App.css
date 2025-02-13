@@ -28,7 +28,6 @@
   /* I went with some typical sans-serif fonts here, normally I would package */
   /* the desired font with the app and ship that. */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  gap: 16px;
   height: 100vh;
   min-height: 500px;
   padding: 20px;
@@ -42,5 +41,11 @@
 
   .App {
     padding: 48px 24px 24px 24px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .App {
+    gap: 20px;
   }
 }

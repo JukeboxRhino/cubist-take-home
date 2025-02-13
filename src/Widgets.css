@@ -31,3 +31,9 @@
     display: unset;
   }
 }
+
+@media (min-width: 1920px) {
+  .widget {
+    padding: 28px 24px;
+  }
+}

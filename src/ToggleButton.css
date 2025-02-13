@@ -34,3 +34,10 @@
 .toggle-button .option.active:hover {
   color: var(--secondary-charcoal-400);
 }
+
+@media (min-width: 1920px) {
+  .toggle-button .option {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
