@@ -14,6 +14,10 @@
   margin-bottom: 24px;
 }
 
+.transactions-widget .transactions-header .toggle-button {
+  margin-left: auto;
+}
+
 .transactions-widget .transactions-body {
   display: flex;
   flex: 1 1 0;

@@ -4,23 +4,24 @@ import Skeleton from './Skeleton';
 import TransactionComponent from './Transaction';
 import { Transaction } from './util/use-data';
 import { ReactComponent as TransactionIcon } from './nav-approvals.svg'
+import ToggleButton from './ToggleButton';
 
 interface TransactionsProps {
   loading: boolean;
   transactions?: Transaction[]
 }
 
-type TabTypes = 'pending' | 'history';
+type TabTypes = 'Pending' | 'History';
 
 function TransactionsWidget({ loading, transactions }: TransactionsProps) {
-  const [activeTab, setActiveTab] = useState<TabTypes>('pending');
+  const [activeTab, setActiveTab] = useState<TabTypes>('Pending');
 
   const visibleTransactions = useMemo(() => transactions?.filter((tx) => {
-    if (activeTab === 'pending') {
+    if (activeTab === 'Pending') {
       // A transaction is "pending" in this case if there are no rejections
       // and we are waiting on at least one approval
       return !tx.submitted;
-    } else if (activeTab === 'history') {
+    } else if (activeTab === 'History') {
       return tx.submitted;
     }
   }),
@@ -41,6 +42,7 @@ function TransactionsWidget({ loading, transactions }: TransactionsProps) {
               <TransactionIcon />
             </div>
             <span>Transactions</span>
+            <ToggleButton<TabTypes> options={['Pending', 'History']} value={activeTab} setValue={(val) => setActiveTab(val)} />
           </>
         )}
       </div>
