@@ -1,3 +1,5 @@
+/* If I had more time, I would work on an animation for this button */
+
 .toggle-button {
   align-items: center;
   background-color: var(--secondary-sand-200);
@@ -5,7 +7,7 @@
   box-sizing: border-box;
   color: var(--secondary-charcoal-400);
   display: flex;
-  gap: 4px;
+  gap: 2px;
   padding: 2px;
 }
 
@@ -15,10 +17,20 @@
   font-size: 12px;
   line-height: 14px;
   padding: 4px 10px;
+  transition: 0.2s;
+  transition-property: color;
+}
+
+.toggle-button .option:hover {
+  color: var(--charcoal);
 }
 
 .toggle-button .option.active {
   background-color: var(--base-white);
   border-radius: 50px;
   color: var(--charcoal);
+}
+
+.toggle-button .option.active:hover {
+  color: var(--secondary-charcoal-400);
 }

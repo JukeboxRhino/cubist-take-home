@@ -25,13 +25,13 @@
   font-size: 12px;
   line-height: 14px;
   gap: var(--flex-gap-small);
-  margin-bottom: 12px;
 }
 
 .transaction .footer {
   align-items: center;
   display: flex;
   gap: var(--flex-gap-small);
+  margin-top: 12px;
 }
 
 .transaction .footer .approvals .active {
@@ -53,6 +53,6 @@
 /* Desktop-specific styles */
 @media (min-width: 1280px) {
   .transaction {
-    padding: 8px 20px;
+    padding: 12px 20px;
   }
 }

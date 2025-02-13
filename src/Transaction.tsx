@@ -22,16 +22,18 @@ function TransactionComponent({ transaction }: TransactionProps) {
         <div className='fake-coin-logo'></div>
         <Address address={transaction.sender} />
       </div>
-      <div className='footer'>
-        <span className='approvals'>
-          <span className={classNames({ active: transaction.approvals.received > 0 })}>
-            {transaction.approvals.received}
+      {!transaction.submitted && (
+        <div className='footer'>
+          <span className='approvals'>
+            <span className={classNames({ active: transaction.approvals.received > 0 })}>
+              {transaction.approvals.received}
+            </span>
+            <span>/{transaction.approvals.required}</span>
           </span>
-          <span>/{transaction.approvals.required}</span>
-        </span>
-        <ProgressBar value={transaction.approvals.received / transaction.approvals.required} />
-        <span className='timestamp'>{transaction.timestamp} hr{transaction.timestamp !== 1 && 's'} ago</span>
-      </div>
+          <ProgressBar value={transaction.approvals.received / transaction.approvals.required} />
+          <span className='timestamp'>{transaction.timestamp} hr{transaction.timestamp !== 1 && 's'} ago</span>
+        </div>
+      )}
     </div>
   );
 }

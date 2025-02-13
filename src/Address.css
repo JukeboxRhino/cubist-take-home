@@ -1,10 +1,11 @@
 .address {
   display: flex;
-  flex: 0 1 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .address .first {
-  flex: 1 1 0;
+  flex: 0 1 fit-content;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
