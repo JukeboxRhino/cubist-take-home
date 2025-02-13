@@ -10,7 +10,7 @@
 
 .skeleton.text {
   border-radius: 50px;
-  height: 44px;
+  height: 24px;
 }
 
 .skeleton.text.small {
@@ -50,6 +50,10 @@
 }
 
 @media (min-width: 1280px) {
+  .skeleton.text {
+    height: 44px;
+  }
+
   .skeleton.text.small {
     height: 20px;
   }
