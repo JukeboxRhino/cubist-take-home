@@ -7,6 +7,28 @@
 - All addresses will truncate in a manner that always shows their last 4 characters if there is not enough space to show the entire address.
 - Mock data randomly generated on each page load to showcase a variety of transactions
 
+### Screenshots
+Mobile
+
+![Mobile](https://apearce.dev/img/jz83hsa6.png)
+![Mobile2](https://apearce.dev/img/ubWqPvDV.png)
+
+1080p
+
+![1080p](https://apearce.dev/img/eihrHkWi.png)
+
+1440p
+
+![1440p](https://apearce.dev/img/1Z1xUiHx.png)
+
+#### [Video Demo](https://apearce.dev/img/02yFPqDe.mp4)
+
+
+
+
+
+
+
 ### Caveats
 A few things that I chose to leave as they are in the interest of time,
 and one thing I wasn't clear on the data structure for:
