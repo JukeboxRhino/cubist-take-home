@@ -1,20 +1,20 @@
 import { useState } from 'react';
 
-interface Transaction {
-  transactionId: string;
-  currency: string;
-  amount: string; // Don't want to use a JS number where precision is needed
-  fromAddress: string;
-  toAddress: string;
+export interface Transaction {
+  unit: string;
+  value: string; // Don't want to use a JS number where precision is needed
+  sender: string;
+  receiver: string;
   timestamp: number; // For simplicity here, I'm just going to generate a number
   // between 1-24 and use that as "- hours ago". In a real environment, I would
   // use/create a component that can be passed a timestamp and renders a user-friendly
   // string.
-  approvals: boolean[]; // These would be more detailed in a real app,
-  // probably with user IDs
+  approvals: (boolean | null)[]; // These would be more detailed in a real app,
+  // probably with user IDs. In this case null means an approval/rejection was
+  // not received yet, false means rejected, true means approved.
 }
 
-interface AppData {
+export interface AppData {
   user: {
     displayName: string;
   },
@@ -27,13 +27,21 @@ const randomHexString = () => Math.floor(Math.random() * Math.pow(2, 32)).toStri
 
 const generateMockTransaction = (): Transaction => {
   return {
-    transactionId: randomHexString(),
-    currency: mockCurrencies[Math.floor(Math.random() * mockCurrencies.length)],
-    amount: Math.floor(Math.random() * 100).toString(),
-    fromAddress: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
-    toAddress: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
+    unit: mockCurrencies[Math.floor(Math.random() * mockCurrencies.length)],
+    value: Math.floor(Math.random() * 100).toString(),
+    sender: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
+    receiver: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
     timestamp: Math.ceil(Math.random() * 24),
-    approvals: new Array(5).fill(null).map(() => Math.random() > 0.2)
+    approvals: new Array(5).fill(null).map(() => {
+      const rand = Math.random();
+      if (rand < 0.5) {
+        return true;
+      } else if (rand < 0.9) {
+        return null;
+      } else {
+        return false;
+      }
+    })
   };
 };
 

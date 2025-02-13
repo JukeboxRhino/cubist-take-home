@@ -1,11 +1,15 @@
 .transactions-widget {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
 }
 
 .transactions-widget .transactions-header {
   align-items: center;
   display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
   gap: 8px;
   margin-bottom: 24px;
 }
@@ -15,6 +19,16 @@
   flex: 1 1 0;
   flex-direction: column;
   gap: var(--flex-gap-small);
+}
+
+.icon-circle {
+  align-items: center;
+  background-color: var(--secondary-sand-200);
+  border-radius: 100%;
+  display: inline-flex;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
 }
 
 /* Desktop-specific styles */

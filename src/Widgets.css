@@ -12,6 +12,7 @@
   box-shadow: 0px 0px 8px 0px rgba(232, 221, 209, 0.40);
   flex: 1 0 0;
   padding: 12px;
+  min-width: 0;
 }
 
 .fake-widget {

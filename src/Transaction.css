@@ -1,0 +1,44 @@
+.transaction {
+  background-color: var(--base-white);
+  border-radius: 12px;
+  box-shadow: 0px 0px 6px 0px rgba(232, 221, 209, 0.40);
+  color: var(--secondary-charcoal-400);
+  padding: 8px 12px;
+}
+
+.transaction .highlighted,
+.transaction .header .address {
+  color: var(--charcoal);
+}
+
+.transaction .header {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.transaction .sending-account {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  line-height: 14px;
+  gap: var(--flex-gap-small);
+  margin-bottom: 12px;
+}
+
+.fake-coin-logo {
+  background-color: orangered;
+  border-radius: 100%;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+
+/* Desktop-specific styles */
+@media (min-width: 1280px) {
+  .transaction {
+    padding: 8px 20px;
+  }
+}

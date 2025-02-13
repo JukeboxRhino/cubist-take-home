@@ -3,15 +3,21 @@ import './WelcomeHeader.css';
 
 interface WelcomeHeaderProps {
   loading: boolean;
+  name?: string;
 }
 
-function WelcomeHeader({ loading }: WelcomeHeaderProps) {
+function WelcomeHeader({ loading, name }: WelcomeHeaderProps) {
   return (
     <header className='welcome-header'>
-      {loading && (
+      {loading ? (
         <>
           <Skeleton type="text" />
           <Skeleton type="text" />
+        </>
+      ) : (
+        <>
+          <div>Welcome,</div>
+          <div>{name}.</div>
         </>
       )}
     </header>

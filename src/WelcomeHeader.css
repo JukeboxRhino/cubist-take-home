@@ -4,6 +4,10 @@
   justify-content: center;
   gap: var(--flex-gap-regular);
   padding: 8px;
+
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.88px;
 }
 
 .welcome-header .skeleton:nth-of-type(1) {
@@ -19,6 +23,9 @@
   .welcome-header {
     height: 220px;
     padding: 0 24px;
+
+    font-size: 44px;
+    line-height: 48px;
   }
 
   .welcome-header .skeleton:nth-of-type(1) {
