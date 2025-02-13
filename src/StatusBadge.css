@@ -1,0 +1,24 @@
+.status-badge {
+  align-items: center;
+  border-radius: 16px;
+  display: flex;
+  font-size: 12px;
+  line-height: 14px;
+  margin-left: 8px;
+  padding: 4px 12px;
+}
+
+.status-badge.Submitted {
+  background-color: var(--secondary-sand-200);
+  color: var(--secondary-sand-950);
+}
+
+.status-badge.Approved {
+  background-color: var(--blue-sky-50);
+  color: var(--blue-sky-900);
+}
+
+.status-badge.Rejected {
+  background-color: var(--primary-orange-50);
+  color: var(--primary-orange-500);
+}

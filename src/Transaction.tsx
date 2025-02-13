@@ -4,22 +4,37 @@ import ProgressBar from './ProgressBar';
 import { Transaction } from './util/use-data';
 import './Transaction.css';
 import classNames from 'classnames';
+import StatusBadge from './StatusBadge';
+import Coin from './Coin';
 
 interface TransactionProps {
   transaction: Transaction
 }
 
+type TxStatus = 'Submitted' | 'Approved' | 'Rejected';
+
 function TransactionComponent({ transaction }: TransactionProps) {
+  // This isn't an accurate representation of the status, I'm just using this to
+  // show some diverse mock data
+  let status: TxStatus;
+  if (transaction.approvals.received === 3) {
+    status = 'Rejected';
+  } else if (transaction.approvals.received === 5) {
+    status = 'Approved';
+  } else {
+    status = 'Submitted';
+  }
   return (
     <div className='transaction'>
       <div className='header'>
-        <span>Sending</span>
+        <span>{(transaction.submitted && (status === 'Submitted' || status === 'Approved')) ? 'Sent' : 'Sending'}</span>
         <span className='highlighted'>{transaction.value} {transaction.unit}</span>
         <span>to</span>
         <Address address={transaction.receiver} />
+        {transaction.submitted && <StatusBadge status={status} />}
       </div>
       <div className='sending-account'>
-        <div className='fake-coin-logo'></div>
+        <Coin chain={transaction.unit} />
         <Address address={transaction.sender} />
       </div>
       {!transaction.submitted && (

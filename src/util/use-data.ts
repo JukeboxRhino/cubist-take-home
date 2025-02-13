@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export interface Transaction {
-  unit: string;
+  unit: Chain;
   value: string; // Don't want to use a JS number where precision is needed
   sender: string;
   receiver: string;
@@ -16,6 +16,8 @@ export interface Transaction {
   }
 }
 
+export type Chain = 'BTC' | 'OP' | 'AVAX' | 'STR' | 'SUI';
+
 export interface AppData {
   user: {
     displayName: string;
@@ -23,7 +25,7 @@ export interface AppData {
   transactions: Transaction[]
 }
 
-const mockCurrencies = ['BTC', 'OP', 'AVAX', 'STR', 'SUI'];
+const mockCurrencies: Chain[] = ['BTC', 'OP', 'AVAX', 'STR', 'SUI'];
 
 const randomHexString = () => Math.floor(Math.random() * Math.pow(2, 32)).toString(16);
 
@@ -36,7 +38,7 @@ const generateMockTransaction = (submitted: boolean = false): Transaction => {
     timestamp: Math.ceil(Math.random() * 24),
     submitted,
     approvals: {
-      received: Math.floor(Math.random() * 6),
+      received: submitted ? Math.floor(Math.random() * 3 + 3) : Math.floor(Math.random() * 5),
       required: 5
     }
   };
