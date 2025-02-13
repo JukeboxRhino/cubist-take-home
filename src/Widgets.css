@@ -2,7 +2,8 @@
   /* In a real scenario where we weren't hiding the other widgets in a mobile view, */
   /* we would switch to flex-direction: column here. */
   display: flex;
-  flex-grow: 1;
+  flex: 1 1 0;
+  min-height: 0;
   gap: 12px;
 }
 

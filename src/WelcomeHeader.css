@@ -21,7 +21,7 @@
 /* Desktop-specific styles */
 @media (min-width: 1280px) {
   .welcome-header {
-    height: 220px;
+    min-height: 220px;
     padding: 0 24px;
 
     font-size: 44px;

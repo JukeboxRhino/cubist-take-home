@@ -28,6 +28,20 @@
   margin-bottom: 12px;
 }
 
+.transaction .footer {
+  align-items: center;
+  display: flex;
+  gap: var(--flex-gap-small);
+}
+
+.transaction .footer .approvals .active {
+  color: var(--blue-sky-600);
+}
+
+.transaction .footer .timestamp {
+  margin-left: auto;
+}
+
 .fake-coin-logo {
   background-color: orangered;
   border-radius: 100%;

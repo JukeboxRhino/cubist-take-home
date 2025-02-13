@@ -9,9 +9,11 @@ export interface Transaction {
   // between 1-24 and use that as "- hours ago". In a real environment, I would
   // use/create a component that can be passed a timestamp and renders a user-friendly
   // string.
-  approvals: (boolean | null)[]; // These would be more detailed in a real app,
-  // probably with user IDs. In this case null means an approval/rejection was
-  // not received yet, false means rejected, true means approved.
+  submitted: boolean;
+  approvals: {
+    received: number;
+    required: number;
+  }
 }
 
 export interface AppData {
@@ -25,31 +27,29 @@ const mockCurrencies = ['BTC', 'OP', 'AVAX', 'STR', 'SUI'];
 
 const randomHexString = () => Math.floor(Math.random() * Math.pow(2, 32)).toString(16);
 
-const generateMockTransaction = (): Transaction => {
+const generateMockTransaction = (submitted: boolean = false): Transaction => {
   return {
     unit: mockCurrencies[Math.floor(Math.random() * mockCurrencies.length)],
     value: Math.floor(Math.random() * 100).toString(),
     sender: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
     receiver: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
     timestamp: Math.ceil(Math.random() * 24),
-    approvals: new Array(5).fill(null).map(() => {
-      const rand = Math.random();
-      if (rand < 0.5) {
-        return true;
-      } else if (rand < 0.9) {
-        return null;
-      } else {
-        return false;
-      }
-    })
+    submitted,
+    approvals: {
+      received: Math.floor(Math.random() * 6),
+      required: 5
+    }
   };
 };
+
+const pendingTransactions = new Array(5).fill(null).map(generateMockTransaction);
+const submittedTransactions = new Array(8).fill(null).map(() => generateMockTransaction(true));
 
 const mockData: AppData = {
   user: {
     displayName: 'Austin Pearce'
   },
-  transactions: new Array(5).fill(null).map(generateMockTransaction)
+  transactions: [...pendingTransactions, ...submittedTransactions]
 };
 
 /**

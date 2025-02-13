@@ -10,12 +10,7 @@ interface TransactionsProps {
   transactions?: Transaction[]
 }
 
-type TabTypes = 'pending' | 'history'
-
-const isTransactionPending = (tx: Transaction) => {
-  return !tx.approvals.some((approval) => approval === false)
-    && tx.approvals.some((approval) => approval === null);
-}
+type TabTypes = 'pending' | 'history';
 
 function TransactionsWidget({ loading, transactions }: TransactionsProps) {
   const [activeTab, setActiveTab] = useState<TabTypes>('pending');
@@ -24,9 +19,9 @@ function TransactionsWidget({ loading, transactions }: TransactionsProps) {
     if (activeTab === 'pending') {
       // A transaction is "pending" in this case if there are no rejections
       // and we are waiting on at least one approval
-      return isTransactionPending(tx);
+      return !tx.submitted;
     } else if (activeTab === 'history') {
-      return !isTransactionPending(tx);
+      return tx.submitted;
     }
   }),
     [activeTab, transactions]
