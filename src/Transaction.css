@@ -13,6 +13,8 @@
 
 .transaction .header {
   display: flex;
+  font-size: 14px;
+  line-height: 18px;
   gap: 4px;
   margin-bottom: 4px;
   overflow: hidden;
@@ -21,6 +23,7 @@
 
 .transaction .sending-account {
   align-items: center;
+  color: var(--secondary-charcoal-300);
   display: flex;
   font-size: 12px;
   line-height: 14px;
@@ -29,7 +32,10 @@
 
 .transaction .footer {
   align-items: center;
+  color: var(--secondary-charcoal-300);
   display: flex;
+  font-size: 12px;
+  line-height: 14px;
   gap: var(--flex-gap-small);
   margin-top: 12px;
 }

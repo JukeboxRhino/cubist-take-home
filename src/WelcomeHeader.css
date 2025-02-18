@@ -7,7 +7,6 @@
 
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: -0.88px;
 }
 
 .welcome-header .skeleton:nth-of-type(1) {
@@ -26,6 +25,7 @@
 
     font-size: 44px;
     line-height: 48px;
+    letter-spacing: -0.88px;
   }
 
   .welcome-header .skeleton:nth-of-type(1) {

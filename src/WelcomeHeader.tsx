@@ -16,8 +16,10 @@ function WelcomeHeader({ loading, name }: WelcomeHeaderProps) {
         </>
       ) : (
         <>
-          <div>Welcome,</div>
-          <div>{name}.</div>
+          <div>
+            Welcome,<br />
+            {name}.
+          </div>
         </>
       )}
     </header>
