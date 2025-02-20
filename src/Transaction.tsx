@@ -8,12 +8,14 @@ import StatusBadge from './StatusBadge';
 import Coin from './Coin';
 
 interface TransactionProps {
-  transaction: Transaction
+  transaction: Transaction;
+  addApproval: () => void;
 }
 
 type TxStatus = 'Submitted' | 'Approved' | 'Rejected';
 
-function TransactionComponent({ transaction }: TransactionProps) {
+function TransactionComponent({ transaction, addApproval }: TransactionProps) {
+  // const { mutate } = useMutation();
   // This isn't an accurate representation of the status, I'm just using this to
   // show some diverse mock data
   let status: TxStatus;
@@ -24,6 +26,7 @@ function TransactionComponent({ transaction }: TransactionProps) {
   } else {
     status = 'Submitted';
   }
+  const finished = transaction.approvals.received === 5;
   return (
     <div className='transaction'>
       <div className='header'>
@@ -37,7 +40,7 @@ function TransactionComponent({ transaction }: TransactionProps) {
         <Coin chain={transaction.unit} />
         <Address address={transaction.sender} />
       </div>
-      {!transaction.submitted && (
+      {!finished && (
         <div className='footer'>
           <span className='approvals'>
             <span className={classNames({ active: transaction.approvals.received > 0 })}>
@@ -46,6 +49,7 @@ function TransactionComponent({ transaction }: TransactionProps) {
             <span>/{transaction.approvals.required}</span>
           </span>
           <ProgressBar value={transaction.approvals.received / transaction.approvals.required} />
+          <button onClick={addApproval}>Approve</button>
           <span className='timestamp'>{transaction.timestamp} hr{transaction.timestamp !== 1 && 's'} ago</span>
         </div>
       )}

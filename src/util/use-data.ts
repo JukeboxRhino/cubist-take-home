@@ -9,6 +9,7 @@ export interface Transaction {
   // between 1-24 and use that as "- hours ago". In a real environment, I would
   // use/create a component that can be passed a timestamp and renders a user-friendly
   // string.
+  transactionId: string;
   submitted: boolean;
   approvals: {
     received: number;
@@ -36,6 +37,7 @@ const generateMockTransaction = (submitted: boolean = false): Transaction => {
     sender: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
     receiver: `0x${randomHexString()}${randomHexString()}${randomHexString()}${randomHexString()}`,
     timestamp: Math.ceil(Math.random() * 24),
+    transactionId: randomHexString(),
     submitted,
     approvals: {
       received: submitted ? Math.floor(Math.random() * 3 + 3) : Math.floor(Math.random() * 5),
@@ -57,16 +59,31 @@ const mockData: AppData = {
 /**
  * Custom hook to simulate making a network call for the data
  */
-export const useData = (): { loading: boolean, data?: AppData } => {
+export const useData = (): { loading: boolean, data?: AppData, mutate: (tx: Transaction) => void } => {
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(mockData);
 
   // Simulate network delay by waiting 1-2 seconds once when the hook is called
   if (loading) {
     setTimeout(() => setLoading(false), Math.random() * 1_000 + 1_000);
   }
 
+  const mutate = (tx: Transaction) => {
+    const txIndex = mockData.transactions.findIndex((transaction) => {
+      return transaction.transactionId === tx.transactionId;
+    });
+    const newTransactions = [...data.transactions];
+    newTransactions[txIndex] = tx;  
+    const newData = {
+      ...data,
+      transactions: newTransactions
+    };
+    setData(newData);
+  }
+
   return {
     loading,
-    data: loading ? undefined : mockData
+    data: loading ? undefined : data,
+    mutate
   };
 };

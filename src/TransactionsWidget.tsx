@@ -8,25 +8,39 @@ import ToggleButton from './ToggleButton';
 
 interface TransactionsProps {
   loading: boolean;
-  transactions?: Transaction[]
+  transactions?: Transaction[];
+  mutate: (tx: Transaction) => void;
 }
 
 type TabTypes = 'Pending' | 'History';
 
-function TransactionsWidget({ loading, transactions }: TransactionsProps) {
+function TransactionsWidget({ loading, transactions, mutate }: TransactionsProps) {
   const [activeTab, setActiveTab] = useState<TabTypes>('Pending');
 
   const visibleTransactions = useMemo(() => transactions?.filter((tx) => {
     if (activeTab === 'Pending') {
       // A transaction is "pending" in this case if there are no rejections
       // and we are waiting on at least one approval
-      return !tx.submitted;
+      return tx.approvals.received !== tx.approvals.required;
     } else if (activeTab === 'History') {
-      return tx.submitted;
+      return tx.approvals.received === tx.approvals.required;
+    } else {
+      return false;
     }
   }),
     [activeTab, transactions]
   );
+
+  const addApproval = (tx: Transaction) => {
+    const newTx: Transaction = {
+      ...tx,
+      approvals: {
+        ...tx.approvals,
+        received: tx.approvals.received + 1
+      }
+    };
+    mutate(newTx);
+  };
 
   return (
     <div className='widget transactions-widget'>
@@ -57,7 +71,7 @@ function TransactionsWidget({ loading, transactions }: TransactionsProps) {
           </>
         ) : (
           <>
-            {visibleTransactions?.map((transaction) => <TransactionComponent transaction={transaction} />)}
+            {visibleTransactions?.map((transaction) => <TransactionComponent key={transaction.transactionId} transaction={transaction} addApproval={() => addApproval(transaction)} />)}
           </>
         )}
       </div>
